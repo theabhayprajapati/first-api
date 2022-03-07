@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router()
-const Book = require('../models/mongoose')
+const { Book, validateBook } = require('../models/mongoose')
 
 // POST : ROUTES A NEW BOOKS
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
+    const message = await validateBook(req.body)
+    if (message) {
+        return res.status(400).send(message)
+    }
     console.log(req.body, 'body🔖')
     const book = new Book({
         name: req.body.bookname,
