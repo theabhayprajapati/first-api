@@ -39,9 +39,9 @@ const logger = winston.createLogger({
 // routes
 app.use('/api/books', booksroute)
 
-
+const uri = process.env.MONGODB_URI;
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(logger.info('info', 'Connecting to MongoDB')).catch(err => logger.log("error", "connecting to MongoDB:❌ ", err.message));
