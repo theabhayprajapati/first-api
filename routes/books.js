@@ -23,5 +23,54 @@ router.post('/', async (req, res) => {
     })
 })
 
+router.get('/', (req, res) => {
+    Book.find().then((books) => {
+        res.send(books)
+    }).catch((err) => {
+        res.status(400).send(err)
+    })
+})
+
+
+
+// ? get a book by id
+router.get('/:id', (req, res) => {
+    Book.findById(req.params.id).then((book) => {
+        if (book) res.send(book)
+        res.status(404).send('Book not found')
+    }).catch((err) => {
+        res.status(500).send(err.message)
+    })
+})
+
+// ? update a book by id
+router.put('/:id', async (req, res) => {
+    Book.findByIdAndUpdate(req.params.id,
+        {
+            name: req.body.bookname,
+            author: {
+                name: req.body.authorname,
+                age: req.body.authorage,
+            },
+            genre: req.body.genre
+
+        }
+        , { new: true }).then((book) => {
+            if (book) res.send(book)
+            res.status(404).send('Book not found')
+        }).catch((err) => {
+            res.status(500).send(err.message)
+        })
+})
+
+// ? DELETE a book by id
+router.delete('/:id', (req, res) => {
+    Book.findByIdAndDelete(req.params.id).then((book) => {
+        if (book) res.send(book)
+        else res.status(404).send('Book not found')
+    }).catch((err) => {
+        res.status(500).send(err.message)
+    })
+})
 
 module.exports = router

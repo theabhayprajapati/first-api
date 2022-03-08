@@ -5,15 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.jsenv"
+    "dev": "nodemon index.jsenv",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.2",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "mongoose": "^6.2.4",
+    "winston": "^3.6.0",
     "yup": "^0.32.11"
   }
 }

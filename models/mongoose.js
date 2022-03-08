@@ -21,7 +21,7 @@ const BookSchema = new mongoose.Schema({
 
 })
 
-const validateBooks = (book) => {
+const validateBooks = async (book) => {
     const schema = yup.object().shape({
         bookname: yup.string().required().min(3).max(255),
         authorname: yup.string().required().min(3).max(255),
