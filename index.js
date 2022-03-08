@@ -39,7 +39,7 @@ const logger = winston.createLogger({
 // routes
 app.use('/api/books', booksroute)
 
-const uri = process.env.MONGODB_URI;
+const uri = 'mongodb+srv://abhayprajapati:stL5bkvLj.s6.gH@firstapi.csiip.mongodb.net/BOOKSDB?retryWrites=true&w=majority';
 // Connect to MongoDB
 mongoose.connect(uri, {
     useNewUrlParser: true,
