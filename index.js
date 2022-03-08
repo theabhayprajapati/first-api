@@ -41,7 +41,7 @@ app.use('/api/books', booksroute)
 
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://abhayprajapati:stL5bkvLj.s6.gH@firstapi.csiip.mongodb.net/BOOKSDB?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(logger.info('info', 'Connecting to MongoDB')).catch(err => logger.log("error", "connecting to MongoDB:❌ ", err.message));
